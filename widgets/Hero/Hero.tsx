@@ -4,6 +4,7 @@ import React from 'react';
 import { Container } from '@/shared/ui/Container';
 import { Button } from '@/shared/ui/Button';
 import { useI18n } from '@/shared/lib/i18n';
+import { getAssetPath } from '@/shared/lib/utils/paths';
 import styles from './Hero.module.css';
 
 const ArrowRightIcon = () => (
@@ -24,7 +25,7 @@ export const Hero: React.FC = () => {
   return (
     <section className={styles.hero}>
       <img 
-        src="/assets/MR.avif" 
+        src={getAssetPath('/assets/MR.avif')} 
         alt="Mauritanian Flag" 
         className={styles.backgroundImage}
         loading="eager"

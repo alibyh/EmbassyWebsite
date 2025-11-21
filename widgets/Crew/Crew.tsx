@@ -3,6 +3,7 @@
 import React from 'react';
 import { Container } from '@/shared/ui/Container';
 import { useI18n } from '@/shared/lib/i18n';
+import { getAssetPath } from '@/shared/lib/utils/paths';
 import { mockCrew, CrewMember } from '@/entities/crew';
 import styles from './Crew.module.css';
 
@@ -47,7 +48,7 @@ const AmbassadorCard: React.FC<{ ambassador: CrewMember }> = ({ ambassador }) =>
       <div className={styles.ambassadorContent}>
         {ambassador.photo && !imageError ? (
           <img 
-            src={ambassador.photo} 
+            src={getAssetPath(ambassador.photo)} 
             alt={ambassador.name}
             className={styles.ambassadorPhoto}
             onError={() => setImageError(true)}
@@ -82,7 +83,7 @@ const MemberCard: React.FC<{ member: CrewMember }> = ({ member }) => {
     <div className={styles.memberCard}>
       {member.photo && !imageError ? (
         <img 
-          src={member.photo} 
+          src={getAssetPath(member.photo)} 
           alt={member.name}
           className={styles.memberPhoto}
           onError={() => setImageError(true)}
