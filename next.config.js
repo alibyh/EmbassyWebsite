@@ -5,9 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // If deploying to a subdirectory, uncomment and set your repo name:
-  // basePath: '/your-repo-name',
-  // trailingSlash: true,
+  basePath: '/EmbassyWebsite',
+  trailingSlash: true,
+  assetPrefix: '/EmbassyWebsite',
 }
 
 module.exports = nextConfig
