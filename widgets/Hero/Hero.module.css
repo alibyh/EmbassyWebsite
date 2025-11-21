@@ -1,0 +1,307 @@
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #F8F7F4;
+  padding: 2rem 0;
+  /* Force GPU acceleration */
+  transform: translateZ(0);
+  /* Optimize rendering */
+  contain: layout style paint;
+  /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* Ensure animations work in all directions */
+  direction: ltr;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  /* Optimize image rendering */
+  transform: translateZ(0);
+  /* Prevent layout shifts */
+  contain: layout style paint;
+  /* Optimize for scrolling */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 247, 244, 0.75) 0%,
+    rgba(254, 253, 251, 0.70) 50%,
+    rgba(232, 245, 236, 0.75) 100%
+  );
+  z-index: 1;
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+.backgroundAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  /* Optimize rendering */
+  contain: layout style paint;
+  backface-visibility: hidden;
+  /* Force LTR for animations regardless of document direction */
+  direction: ltr;
+}
+
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 98, 51, 0.08) 0%,
+    rgba(255, 198, 30, 0.06) 50%,
+    rgba(0, 98, 51, 0.08) 100%
+  );
+  animation: wave 20s ease-in-out infinite;
+  /* Use opacity instead of mix-blend-mode for better performance */
+  opacity: 0.9;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  /* Optimize rendering */
+  backface-visibility: hidden;
+  contain: layout style paint;
+  /* Force LTR direction for consistent animation */
+  direction: ltr;
+}
+
+.wave:nth-child(2) {
+  animation: wave 15s ease-in-out infinite reverse;
+  opacity: 0.5;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translate3d(-25%, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(-10%, -5%, 0) rotate(1deg);
+  }
+  50% {
+    transform: translate3d(0%, 0%, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(-10%, 5%, 0) rotate(-1deg);
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+.textContent {
+  max-width: 720px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 98, 51, 0.08);
+  border: 1px solid rgba(0, 98, 51, 0.2);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #006233;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.badgeIcon {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #FFC61E, #F5B800);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.9);
+  }
+}
+
+.title {
+  font-size: 3.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: var(--color-text-light);
+  margin-bottom: 2.5rem;
+  font-family: var(--font-primary);
+  animation: fadeInUp 1s ease-out 0.4s backwards;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.2s ease-out 0.6s backwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.decorativeElement {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 98, 51, 0.10) 0%,
+    rgba(255, 198, 30, 0.06) 50%,
+    rgba(0, 98, 51, 0) 70%
+  );
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+  /* GPU acceleration */
+  will-change: transform;
+  /* Force LTR for consistent positioning */
+  direction: ltr;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate3d(0, -50%, 0);
+  }
+  50% {
+    transform: translate3d(10px, -55%, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .decorativeElement {
+    width: 300px;
+    height: 300px;
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 0 3rem;
+  }
+  
+  .hero::before {
+    background: linear-gradient(
+      135deg,
+      rgba(248, 247, 244, 0.90) 0%,
+      rgba(254, 253, 251, 0.85) 50%,
+      rgba(232, 245, 236, 0.90) 100%
+    );
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .wave {
+    animation-duration: 25s;
+  }
+  
+  .wave:nth-child(2) {
+    animation-duration: 20s;
+  }
+
+  .textContent {
+    max-width: 100%;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .decorativeElement {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.9375rem;
+  }
+}
+

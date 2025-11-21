@@ -1,0 +1,351 @@
+.section {
+  padding: 6rem 0;
+  background: var(--color-white);
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 98, 51, 0.08);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-green);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.crewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.ambassadorCard {
+  grid-column: 1 / -1;
+  max-width: 600px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-cream) 100%);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  border: 2px solid rgba(0, 98, 51, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(42, 51, 66, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.ambassadorCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-gold));
+}
+
+.ambassadorCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -5px rgba(42, 51, 66, 0.15);
+}
+
+.ambassadorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 98, 51, 0.1);
+  border: 1px solid rgba(0, 98, 51, 0.2);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.ambassadorContent {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.ambassadorPhoto {
+  width: 180px;
+  height: 240px;
+  border-radius: 1rem;
+  object-fit: cover;
+  border: 3px solid rgba(0, 98, 51, 0.1);
+  flex-shrink: 0;
+  box-shadow: 0 8px 16px -4px rgba(42, 51, 66, 0.1);
+}
+
+.ambassadorInfo {
+  flex: 1;
+}
+
+.ambassadorName {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-secondary);
+}
+
+.ambassadorPosition {
+  font-size: 1.125rem;
+  color: var(--color-green);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.ambassadorBio {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.ambassadorEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--color-green);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.ambassadorEmail:hover {
+  color: var(--color-text);
+  transform: translateX(4px);
+}
+
+.memberCard {
+  background: var(--color-white);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(232, 230, 225, 0.6);
+  box-shadow: 0 4px 6px -1px rgba(42, 51, 66, 0.08);
+  transition: var(--transition);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.memberCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-green), #004F27);
+  transform: scaleX(0);
+  transition: var(--transition);
+  transform-origin: left;
+}
+
+.memberCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px -5px rgba(42, 51, 66, 0.12);
+  border-color: rgba(0, 98, 51, 0.3);
+}
+
+.memberCard:hover::before {
+  transform: scaleX(1);
+}
+
+.memberPhoto {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0, 98, 51, 0.1);
+  margin: 0 auto 1.5rem;
+  display: block;
+  box-shadow: 0 4px 12px -2px rgba(42, 51, 66, 0.1);
+  transition: var(--transition);
+}
+
+.memberCard:hover .memberPhoto {
+  transform: scale(1.05);
+  border-color: var(--color-green);
+}
+
+.memberName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-secondary);
+}
+
+.memberPosition {
+  font-size: 0.9375rem;
+  color: var(--color-green);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.memberBio {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.memberEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-green);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.memberEmail:hover {
+  color: var(--color-text);
+}
+
+.placeholderPhoto {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 98, 51, 0.1), rgba(255, 198, 30, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-green);
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: inherit;
+}
+
+.ambassadorPhoto {
+  position: relative;
+  overflow: hidden;
+}
+
+.memberPhoto {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .crewGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ambassadorCard {
+    max-width: 100%;
+  }
+  
+  .ambassadorContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .ambassadorPhoto {
+    width: 160px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .sectionBadge {
+    font-size: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .crewGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ambassadorCard {
+    padding: 2rem;
+  }
+
+  .ambassadorName {
+    font-size: 1.5rem;
+  }
+
+  .ambassadorPosition {
+    font-size: 1rem;
+  }
+
+  .memberCard {
+    padding: 1.5rem;
+  }
+
+  .memberPhoto {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .ambassadorCard {
+    padding: 1.5rem;
+  }
+
+  .ambassadorPhoto {
+    width: 140px;
+    height: 180px;
+  }
+
+  .memberPhoto {
+    width: 100px;
+    height: 100px;
+  }
+}
+

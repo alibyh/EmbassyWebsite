@@ -1,0 +1,106 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: var(--font-primary);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary variant */
+.primary {
+  background: linear-gradient(135deg, #006233 0%, #004F27 100%);
+  color: var(--color-white);
+  box-shadow: 0 4px 6px -1px rgba(0, 98, 51, 0.2);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 98, 51, 0.3);
+  background: linear-gradient(135deg, #005A2E 0%, #004520 100%);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary variant */
+.secondary {
+  background: var(--color-white);
+  color: var(--color-green);
+  border: 1.5px solid var(--color-green);
+  box-shadow: 0 1px 2px 0 rgba(0, 98, 51, 0.05);
+}
+
+.secondary:hover:not(:disabled) {
+  background: rgba(0, 98, 51, 0.05);
+  border-color: #004F27;
+  color: #004F27;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 98, 51, 0.15);
+}
+
+/* Outline variant */
+.outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid #E8E6E1;
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--color-cream);
+  border-color: var(--color-green);
+  color: var(--color-green);
+  transform: translateY(-1px);
+}
+
+/* Ghost variant */
+.ghost {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.ghost:hover:not(:disabled) {
+  background: rgba(0, 98, 51, 0.05);
+  color: var(--color-green);
+}
+
+/* Size variants */
+.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Icon styling */
+.icon {
+  display: inline-flex;
+  transition: var(--transition);
+}
+
+.button:hover .icon {
+  transform: translateX(2px);
+}
+
