@@ -27,6 +27,24 @@ export const Announcements: React.FC = () => {
 
   const fetchNews = async () => {
     try {
+      // Check if Supabase is configured
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      
+      if (!supabaseUrl || !supabaseKey) {
+        // Use mock data if Supabase is not configured
+        const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
+          id: `news-${index}`,
+          title: item.title,
+          text: item.excerpt,
+          photo_url: null,
+          created_at: new Date().toISOString(),
+        }));
+        setNews(mockNews);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('news')
         .select('*')

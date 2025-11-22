@@ -29,6 +29,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    // Only run auth in browser (not during SSR/build)
+    if (typeof window === 'undefined') {
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
