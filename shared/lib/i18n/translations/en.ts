@@ -4,6 +4,7 @@ export const en = {
     learnMore: 'Learn More',
     readMore: 'Read More',
     viewAll: 'View All',
+    loading: 'Loading...',
   },
   header: {
     home: 'Home',
@@ -24,6 +25,7 @@ export const en = {
     badge: 'Latest Updates',
     title: 'Announcements',
     description: 'Stay informed with the latest news, updates, and important notices from the embassy.',
+    empty: 'No announcements available at this time.',
     date: 'Date',
     announcement: 'Announcement',
     category: 'Category',

@@ -6,6 +6,7 @@ export const ar: Translation = {
     learnMore: 'اعرف المزيد',
     readMore: 'اقرأ المزيد',
     viewAll: 'عرض الكل',
+    loading: 'جاري التحميل...',
   },
   header: {
     home: 'الرئيسية',
@@ -26,6 +27,7 @@ export const ar: Translation = {
     badge: 'آخر التحديثات',
     title: 'الإعلانات',
     description: 'ابق على اطلاع بآخر الأخبار والتحديثات والإشعارات الهامة من السفارة.',
+    empty: 'لا توجد إعلانات متاحة في الوقت الحالي.',
     date: 'التاريخ',
     announcement: 'الإعلان',
     category: 'الفئة',

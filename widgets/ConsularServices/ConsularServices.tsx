@@ -3,6 +3,7 @@
 import React from 'react';
 import { Container } from '@/shared/ui/Container';
 import { Button } from '@/shared/ui/Button';
+import { useI18n } from '@/shared/lib/i18n';
 import styles from './ConsularServices.module.css';
 
 const PassportIcon = () => (
@@ -54,62 +55,44 @@ interface Service {
   items: string[];
 }
 
-const services: Service[] = [
-  {
-    icon: <PassportIcon />,
-    title: 'Passport Services',
-    description: 'Comprehensive passport issuance and renewal services for all citizens.',
-    items: [
-      'New passport applications',
-      'Passport renewals',
-      'Lost/stolen passport replacement',
-      'Emergency travel documents',
-    ],
-  },
-  {
-    icon: <VisaIcon />,
-    title: 'Visa & Immigration',
-    description: 'Expert assistance with visa applications and immigration procedures.',
-    items: [
-      'Visa application processing',
-      'Immigration consultations',
-      'Travel permit issuance',
-      'Entry requirements guidance',
-    ],
-  },
-  {
-    icon: <NotaryIcon />,
-    title: 'Notarial Services',
-    description: 'Official document authentication and notarization services.',
-    items: [
-      'Document notarization',
-      'Affidavit certification',
-      'Power of attorney',
-      'Birth certificate attestation',
-    ],
-  },
-  {
-    icon: <LegalIcon />,
-    title: 'Legal Assistance',
-    description: 'Legal support and guidance for citizens in need of assistance.',
-    items: [
-      'Legal consultations',
-      'Court liaison services',
-      'Prison visit coordination',
-      'Local attorney referrals',
-    ],
-  },
-];
-
 export const ConsularServices: React.FC = () => {
+  const { t } = useI18n();
+
+  const services: Service[] = [
+    {
+      icon: <PassportIcon />,
+      title: t.services.passport.title,
+      description: t.services.passport.description,
+      items: t.services.passport.items,
+    },
+    {
+      icon: <VisaIcon />,
+      title: t.services.visa.title,
+      description: t.services.visa.description,
+      items: t.services.visa.items,
+    },
+    {
+      icon: <NotaryIcon />,
+      title: t.services.notary.title,
+      description: t.services.notary.description,
+      items: t.services.notary.items,
+    },
+    {
+      icon: <LegalIcon />,
+      title: t.services.legal.title,
+      description: t.services.legal.description,
+      items: t.services.legal.items,
+    },
+  ];
+
   return (
     <section className={styles.section} id="services">
       <Container>
         <div className={styles.header}>
-          <div className={styles.sectionBadge}>Our Services</div>
-          <h2 className={styles.title}>Consular Services</h2>
+          <div className={styles.sectionBadge}>{t.services.badge}</div>
+          <h2 className={styles.title}>{t.services.title}</h2>
           <p className={styles.description}>
-            Comprehensive support for all your consular needs, provided by our experienced diplomatic team.
+            {t.services.description}
           </p>
         </div>
 
@@ -134,16 +117,16 @@ export const ConsularServices: React.FC = () => {
         </div>
 
         <div className={styles.ctaSection}>
-          <h3 className={styles.ctaTitle}>Ready to Get Started?</h3>
+          <h3 className={styles.ctaTitle}>{t.services.cta.title}</h3>
           <p className={styles.ctaDescription}>
-            Schedule an appointment or contact us for more information about our services.
+            {t.services.cta.description}
           </p>
           <div className={styles.ctaActions}>
             <Button variant="primary" size="large" icon={<ArrowRightIcon />}>
-              Book Appointment
+              {t.services.cta.bookAppointment}
             </Button>
             <Button variant="outline" size="large">
-              Download Forms
+              {t.services.cta.downloadForms}
             </Button>
           </div>
         </div>

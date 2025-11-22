@@ -93,6 +93,12 @@ export const Header: React.FC = () => {
         </Container>
       </header>
 
+      <div 
+        className={`${styles.mobileNavOverlay} ${isMobileMenuOpen ? styles.open : ''}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.open : ''}`}>
         <ul className={styles.mobileNavList}>
           {navItems.map((item) => (

@@ -104,3 +104,8 @@
   transform: translateX(2px);
 }
 
+/* RTL support for icon animation */
+[dir="rtl"] .button:hover .icon {
+  transform: translateX(-2px);
+}
+

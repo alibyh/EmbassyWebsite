@@ -1,6 +1,7 @@
 'use client';
 
 import { I18nProvider } from '@/shared/lib/i18n';
+import { AuthProvider } from '@/shared/lib/auth';
 import './globals.css';
 
 export default function RootLayout({
@@ -19,7 +20,9 @@ export default function RootLayout({
         <link rel="icon" href="/EmbassyWebsite/icon.svg" />
       </head>
       <body>
+        <AuthProvider>
         <I18nProvider>{children}</I18nProvider>
+        </AuthProvider>
       </body>
     </html>
   );

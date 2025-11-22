@@ -12,8 +12,8 @@
   contain: layout style paint;
   /* Smooth scrolling */
   -webkit-overflow-scrolling: touch;
-  /* Ensure animations work in all directions */
-  direction: ltr;
+  /* Lower z-index so mobile menu appears above */
+  z-index: 1;
 }
 
 .backgroundImage {
@@ -124,6 +124,7 @@
 
 .textContent {
   max-width: 720px;
+  /* Respect RTL direction for text content */
 }
 
 .badge {
@@ -215,8 +216,14 @@
   pointer-events: none;
   /* GPU acceleration */
   will-change: transform;
-  /* Force LTR for consistent positioning */
+  /* Force LTR for consistent positioning of decorative element */
   direction: ltr;
+}
+
+/* RTL support - move decorative element to left side */
+[dir="rtl"] .decorativeElement {
+  right: auto;
+  left: 5%;
 }
 
 @keyframes float {
@@ -233,6 +240,11 @@
     width: 300px;
     height: 300px;
     right: 0;
+  }
+
+  [dir="rtl"] .decorativeElement {
+    right: auto;
+    left: 0;
   }
 }
 

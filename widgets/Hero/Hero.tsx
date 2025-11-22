@@ -56,6 +56,7 @@ export const Hero: React.FC = () => {
               variant="primary" 
               size="large"
               icon={<ArrowRightIcon />}
+              iconPosition="right"
             >
               {t.hero.consularServices}
             </Button>

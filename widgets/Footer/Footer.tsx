@@ -1,8 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@/shared/ui/Container';
 import { useI18n } from '@/shared/lib/i18n';
+import { LoginModal } from '@/widgets/LoginModal';
+import { useAuth } from '@/shared/lib/auth';
+import { Button } from '@/shared/ui/Button';
 import styles from './Footer.module.css';
 
 const LogoIcon = () => (
@@ -43,9 +46,20 @@ const InstagramIcon = () => (
 
 export const Footer: React.FC = () => {
   const { t } = useI18n();
+  const { user, signOut } = useAuth();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const currentYear = new Date().getFullYear();
 
+  const handleLoginClick = () => {
+    if (user) {
+      signOut();
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
+
   return (
+    <>
     <footer className={styles.footer}>
       <Container>
         <div className={styles.content}>
@@ -110,13 +124,28 @@ export const Footer: React.FC = () => {
           <p className={styles.copyright}>
             © {currentYear} {t.footer.copyright}
           </p>
+          <div className={styles.bottomRight}>
           <ul className={styles.bottomLinks}>
             <li><a href="#" className={styles.bottomLink}>{t.footer.legal.privacy}</a></li>
             <li><a href="#" className={styles.bottomLink}>{t.footer.legal.terms}</a></li>
             <li><a href="#" className={styles.bottomLink}>{t.footer.legal.accessibility}</a></li>
           </ul>
+            <Button
+              variant="ghost"
+              size="small"
+              onClick={handleLoginClick}
+              className={styles.adminButton}
+            >
+              {user ? 'Sign Out' : 'Admin Login'}
+            </Button>
+          </div>
         </div>
       </Container>
     </footer>
+    <LoginModal
+      isOpen={isLoginModalOpen}
+      onClose={() => setIsLoginModalOpen(false)}
+    />
+    </>
   );
 };

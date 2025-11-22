@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Container } from '@/shared/ui/Container';
+import { useI18n } from '@/shared/lib/i18n';
 import styles from './EmergencyContacts.module.css';
 
 const AlertIcon = () => (
@@ -47,35 +48,37 @@ interface ContactCardData {
   available24?: boolean;
 }
 
-const contacts: ContactCardData[] = [
-  {
-    title: 'Emergency Hotline',
-    subtitle: '24/7 Emergency Assistance',
-    urgent: true,
-    phone: '+7 (495) 123-45-67',
-    email: 'emergency@mauritania-embassy.ru',
-    availability: 'Available 24 hours a day, 7 days a week',
-    available24: true,
-  },
-  {
-    title: 'Consular Services',
-    subtitle: 'General Inquiries & Support',
-    phone: '+7 (495) 234-56-78',
-    email: 'consular@mauritania-embassy.ru',
-    address: 'Prospekt Mira 36, Moscow, 129090, Russia',
-    availability: 'Monday - Friday: 9:00 AM - 5:00 PM',
-  },
-  {
-    title: 'Visa Services',
-    subtitle: 'Visa Applications & Information',
-    phone: '+7 (495) 345-67-89',
-    email: 'visa@mauritania-embassy.ru',
-    address: 'Prospekt Mira 36, Moscow, 129090, Russia',
-    availability: 'Monday - Thursday: 10:00 AM - 3:00 PM',
-  },
-];
-
 export const EmergencyContacts: React.FC = () => {
+  const { t } = useI18n();
+
+  const contacts: ContactCardData[] = [
+    {
+      title: t.emergency.hotline.title,
+      subtitle: t.emergency.hotline.subtitle,
+      urgent: true,
+      phone: '+7 (495) 123-45-67',
+      email: 'emergency@mauritania-embassy.ru',
+      availability: t.emergency.hotline.availability,
+      available24: true,
+    },
+    {
+      title: t.emergency.consular.title,
+      subtitle: t.emergency.consular.subtitle,
+      phone: '+7 (495) 234-56-78',
+      email: 'consular@mauritania-embassy.ru',
+      address: 'Prospekt Mira 36, Moscow, 129090, Russia',
+      availability: t.emergency.consular.availability,
+    },
+    {
+      title: t.emergency.visa.title,
+      subtitle: t.emergency.visa.subtitle,
+      phone: '+7 (495) 345-67-89',
+      email: 'visa@mauritania-embassy.ru',
+      address: 'Prospekt Mira 36, Moscow, 129090, Russia',
+      availability: t.emergency.visa.availability,
+    },
+  ];
+
   return (
     <section className={styles.section} id="emergency">
       <div className={styles.backgroundPattern} />
@@ -83,11 +86,11 @@ export const EmergencyContacts: React.FC = () => {
         <div className={styles.header}>
           <div className={styles.alertBadge}>
             <AlertIcon />
-            Emergency Contact
+            {t.emergency.badge}
           </div>
-          <h2 className={styles.title}>24/7 Support for Citizens</h2>
+          <h2 className={styles.title}>{t.emergency.title}</h2>
           <p className={styles.description}>
-            For Mauritanian citizens in Russia: In case of emergency, our embassy team is here to help 24/7.
+            {t.emergency.description}
           </p>
         </div>
 
@@ -108,7 +111,7 @@ export const EmergencyContacts: React.FC = () => {
                 <div className={styles.infoItem}>
                   <ContactPhoneIcon />
                   <div className={styles.infoContent}>
-                    <div className={styles.infoLabel}>Phone</div>
+                    <div className={styles.infoLabel}>{t.emergency.labels.phone}</div>
                     <div className={styles.infoValue}>{contact.phone}</div>
                   </div>
                 </div>
@@ -116,7 +119,7 @@ export const EmergencyContacts: React.FC = () => {
                 <div className={styles.infoItem}>
                   <MailIcon />
                   <div className={styles.infoContent}>
-                    <div className={styles.infoLabel}>Email</div>
+                    <div className={styles.infoLabel}>{t.emergency.labels.email}</div>
                     <div className={styles.infoValue}>{contact.email}</div>
                   </div>
                 </div>
@@ -125,7 +128,7 @@ export const EmergencyContacts: React.FC = () => {
                   <div className={styles.infoItem}>
                     <LocationIcon />
                     <div className={styles.infoContent}>
-                      <div className={styles.infoLabel}>Address</div>
+                      <div className={styles.infoLabel}>{t.emergency.labels.address}</div>
                       <div className={styles.infoValue}>{contact.address}</div>
                     </div>
                   </div>
@@ -133,12 +136,12 @@ export const EmergencyContacts: React.FC = () => {
               </div>
 
               <div className={styles.availability}>
-                <div className={styles.availabilityTitle}>Availability</div>
+                <div className={styles.availabilityTitle}>{t.emergency.labels.availability}</div>
                 <div className={styles.availabilityTime}>{contact.availability}</div>
                 {contact.available24 && (
                   <div className={styles.availabilityBadge}>
                     <span className={styles.statusDot} />
-                    Available Now
+                    {t.emergency.hotline.availableNow}
                   </div>
                 )}
               </div>

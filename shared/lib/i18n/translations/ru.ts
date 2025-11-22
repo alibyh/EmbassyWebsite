@@ -6,6 +6,7 @@ export const ru: Translation = {
     learnMore: 'Узнать больше',
     readMore: 'Читать далее',
     viewAll: 'Посмотреть все',
+    loading: 'Загрузка...',
   },
   header: {
     home: 'Главная',
@@ -26,6 +27,7 @@ export const ru: Translation = {
     badge: 'Последние новости',
     title: 'Объявления',
     description: 'Будьте в курсе последних новостей, обновлений и важных уведомлений от посольства.',
+    empty: 'В настоящее время объявлений нет.',
     date: 'Дата',
     announcement: 'Объявление',
     category: 'Категория',
