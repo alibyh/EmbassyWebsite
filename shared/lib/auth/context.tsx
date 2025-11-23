@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '../supabase/client';
+import { supabase, isSupabaseConfigured } from '../supabase/client';
 
 interface AuthContextType {
   user: User | null;
@@ -20,11 +20,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if Supabase is configured
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    
-    if (!supabaseUrl || !supabaseKey) {
+    // Check if Supabase is properly configured
+    if (!isSupabaseConfigured()) {
       setLoading(false);
       return;
     }

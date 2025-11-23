@@ -1,207 +1,58 @@
-# Supabase Setup Guide
+# Supabase Setup for GitHub Pages
 
-## 1. Create Storage Bucket
+## Current Status
 
-1. Go to your Supabase dashboard
-2. Navigate to **Storage**
-3. Click **New bucket**
-4. Name it: `news-photos`
-5. Make it **Public** (uncheck "Private bucket")
-6. Click **Create bucket**
+The website is configured to work **with or without** Supabase:
 
-## 2. Set Up Storage Policies
+- ✅ **With Supabase**: Fetches real news from database
+- ✅ **Without Supabase**: Uses mock data from translations
 
-Go to **Storage** → **Policies** → Select `news-photos` bucket
+## How It Works
 
-### Policy 1: Allow authenticated users to upload files
+The code automatically detects if Supabase is configured:
+- Checks for real credentials (not placeholders)
+- Falls back to mock data if Supabase is not available
+- No errors or failed requests
 
-Click **New Policy** → **For full customization**
+## To Enable Supabase on GitHub Pages
 
-**Policy name:** `Allow authenticated uploads`
+### Option 1: Add Secrets to GitHub Repository (Recommended)
 
-**Allowed operation:** INSERT
+1. Go to your GitHub repository
+2. Navigate to **Settings** → **Secrets and variables** → **Actions**
+3. Click **New repository secret**
+4. Add these secrets:
+   - **Name**: `NEXT_PUBLIC_SUPABASE_URL`
+     - **Value**: Your Supabase project URL (e.g., `https://xxxxx.supabase.co`)
+   - **Name**: `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - **Value**: Your Supabase anon/public key
 
-**Policy definition:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
+5. Push a new commit to trigger the build
+6. The build will embed these values and Supabase will work at runtime
 
-**WITH CHECK expression:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
+### Option 2: Use Mock Data (Current)
 
-### Policy 2: Allow authenticated users to update their files
-
-**Policy name:** `Allow authenticated updates`
-
-**Allowed operation:** UPDATE
-
-**Policy definition:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
-
-**WITH CHECK expression:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
-
-### Policy 3: Allow authenticated users to delete their files
-
-**Policy name:** `Allow authenticated deletes`
-
-**Allowed operation:** DELETE
-
-**Policy definition:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
-
-**WITH CHECK expression:**
-```sql
-(bucket_id = 'news-photos'::text) AND (auth.role() = 'authenticated'::text)
-```
-
-### Policy 4: Allow public read access
-
-**Policy name:** `Allow public read access`
-
-**Allowed operation:** SELECT
-
-**Policy definition:**
-```sql
-bucket_id = 'news-photos'::text
-```
-
-**WITH CHECK expression:** (leave empty or same as definition)
-
-## 3. Create News Table
-
-Go to **SQL Editor** and run:
-
-```sql
-CREATE TABLE IF NOT EXISTS news (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  text TEXT NOT NULL,
-  photo_url TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  created_by UUID REFERENCES auth.users(id),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Enable Row Level Security
-ALTER TABLE news ENABLE ROW LEVEL SECURITY;
-
--- Create policy to allow authenticated users to insert
-CREATE POLICY "Allow authenticated users to insert news"
-ON news FOR INSERT
-TO authenticated
-WITH CHECK (true);
-
--- Create policy to allow public read access
-CREATE POLICY "Allow public read access"
-ON news FOR SELECT
-TO public
-USING (true);
-
--- Create policy to allow authenticated users to update their own news
-CREATE POLICY "Allow authenticated users to update news"
-ON news FOR UPDATE
-TO authenticated
-USING (true)
-WITH CHECK (true);
-
--- Create policy to allow authenticated users to delete their own news
-CREATE POLICY "Allow authenticated users to delete news"
-ON news FOR DELETE
-TO authenticated
-USING (true);
-```
-
-## 4. Quick Setup via SQL (Alternative)
-
-If you prefer to set everything up via SQL, run this in the **SQL Editor**:
-
-```sql
--- Create storage bucket (if it doesn't exist)
-INSERT INTO storage.buckets (id, name, public)
-VALUES ('news-photos', 'news-photos', true)
-ON CONFLICT (id) DO NOTHING;
-
--- Storage policies for news-photos bucket
--- Allow authenticated users to upload
-CREATE POLICY "Allow authenticated uploads"
-ON storage.objects FOR INSERT
-TO authenticated
-WITH CHECK (bucket_id = 'news-photos');
-
--- Allow authenticated users to update
-CREATE POLICY "Allow authenticated updates"
-ON storage.objects FOR UPDATE
-TO authenticated
-USING (bucket_id = 'news-photos')
-WITH CHECK (bucket_id = 'news-photos');
-
--- Allow authenticated users to delete
-CREATE POLICY "Allow authenticated deletes"
-ON storage.objects FOR DELETE
-TO authenticated
-USING (bucket_id = 'news-photos');
-
--- Allow public read access
-CREATE POLICY "Allow public read access"
-ON storage.objects FOR SELECT
-TO public
-USING (bucket_id = 'news-photos');
-
--- Create news table
-CREATE TABLE IF NOT EXISTS news (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL,
-  text TEXT NOT NULL,
-  photo_url TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  created_by UUID REFERENCES auth.users(id),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Enable Row Level Security
-ALTER TABLE news ENABLE ROW LEVEL SECURITY;
-
--- Create policy to allow authenticated users to insert
-CREATE POLICY "Allow authenticated users to insert news"
-ON news FOR INSERT
-TO authenticated
-WITH CHECK (true);
-
--- Create policy to allow public read access
-CREATE POLICY "Allow public read access"
-ON news FOR SELECT
-TO public
-USING (true);
-
--- Create policy to allow authenticated users to update their own news
-CREATE POLICY "Allow authenticated users to update news"
-ON news FOR UPDATE
-TO authenticated
-USING (true)
-WITH CHECK (true);
-
--- Create policy to allow authenticated users to delete their own news
-CREATE POLICY "Allow authenticated users to delete news"
-ON news FOR DELETE
-TO authenticated
-USING (true);
-```
+If you don't set the secrets, the website will:
+- ✅ Build successfully
+- ✅ Display mock announcements from translations
+- ✅ Work perfectly without Supabase
 
 ## Verification
 
-After running the SQL:
+After adding secrets and deploying:
 
-1. Go to **Storage** → You should see `news-photos` bucket
-2. Go to **Storage** → **Policies** → Select `news-photos` → You should see 4 policies
-3. Go to **Table Editor** → You should see `news` table
-4. Try uploading a photo from the admin panel
+1. Open browser console on your deployed site
+2. Check for Supabase connection
+3. News should load from your database instead of mock data
 
+## Files Involved
+
+- `shared/lib/supabase/client.ts` - Supabase client with configuration detection
+- `widgets/Announcements/Announcements.tsx` - Checks config before fetching
+- `.github/workflows/deploy.yml` - Uses secrets during build
+
+## Notes
+
+- Environment variables prefixed with `NEXT_PUBLIC_` are embedded in the build
+- They must be set during the GitHub Actions build step
+- The code automatically detects placeholder values and skips Supabase requests

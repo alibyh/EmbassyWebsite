@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from '@/shared/ui/Container';
 import { useI18n } from '@/shared/lib/i18n';
-import { supabase } from '@/shared/lib/supabase';
+import { getSupabaseClient, isSupabaseConfigured } from '@/shared/lib/supabase';
 import styles from './Announcements.module.css';
 
 interface NewsItem {
@@ -27,11 +27,8 @@ export const Announcements: React.FC = () => {
 
   const fetchNews = async () => {
     try {
-      // Check if Supabase is configured
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-      
-      if (!supabaseUrl || !supabaseKey) {
+      // Check if Supabase is properly configured
+      if (!isSupabaseConfigured()) {
         // Use mock data if Supabase is not configured
         const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
           id: `news-${index}`,
@@ -45,7 +42,24 @@ export const Announcements: React.FC = () => {
         return;
       }
 
-      const { data, error } = await supabase
+      // Get Supabase client (will only return client if configured)
+      const supabaseClient = getSupabaseClient();
+      
+      if (!supabaseClient) {
+        // Fallback to mock data
+        const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
+          id: `news-${index}`,
+          title: item.title,
+          text: item.excerpt,
+          photo_url: null,
+          created_at: new Date().toISOString(),
+        }));
+        setNews(mockNews);
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabaseClient
         .from('news')
         .select('*')
         .order('created_at', { ascending: false });

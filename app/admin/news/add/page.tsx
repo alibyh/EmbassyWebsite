@@ -6,7 +6,7 @@ import { Container } from '@/shared/ui/Container';
 import { Button } from '@/shared/ui/Button';
 import { Header } from '@/widgets/Header';
 import { Footer } from '@/widgets/Footer';
-import { supabase } from '@/shared/lib/supabase';
+import { getSupabaseClient, isSupabaseConfigured } from '@/shared/lib/supabase';
 import styles from './AddNews.module.css';
 
 export default function AddNewsPage() {
@@ -57,6 +57,16 @@ export default function AddNewsPage() {
     setUploading(true);
 
     try {
+      // Check if Supabase is configured
+      if (!isSupabaseConfigured()) {
+        throw new Error('Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.');
+      }
+
+      const supabaseClient = getSupabaseClient();
+      if (!supabaseClient) {
+        throw new Error('Supabase client is not available.');
+      }
+
       let photoUrl = '';
 
       // Upload photo if provided
@@ -65,7 +75,7 @@ export default function AddNewsPage() {
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
         const filePath = `news/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage
+        const { error: uploadError } = await supabaseClient.storage
           .from('news-photos')
           .upload(filePath, formData.photo);
 
@@ -73,7 +83,7 @@ export default function AddNewsPage() {
           throw uploadError;
         }
 
-        const { data: { publicUrl } } = supabase.storage
+        const { data: { publicUrl } } = supabaseClient.storage
           .from('news-photos')
           .getPublicUrl(filePath);
 
@@ -81,7 +91,7 @@ export default function AddNewsPage() {
       }
 
       // Save news article to database
-      const { error: dbError } = await supabase
+      const { error: dbError } = await supabaseClient
         .from('news')
         .insert([
           {
