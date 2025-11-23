@@ -15,6 +15,7 @@ export const fr: Translation = {
     emergency: 'Urgence',
     about: 'À propos',
     crew: 'Notre équipe',
+    location: 'Emplacement',
   },
   hero: {
     badge: 'Ambassade de Mauritanie à Moscou',
@@ -252,6 +253,16 @@ export const fr: Translation = {
       },
       success: 'Article créé avec succès! Redirection...',
     },
+  },
+  location: {
+    badge: 'Visitez-nous',
+    title: 'Emplacement de l\'ambassade',
+    description: 'Trouvez-nous à Moscou. Nous accueillons les visiteurs pendant nos heures d\'ouverture.',
+    photosTitle: 'Photos de l\'ambassade',
+    embassyPhoto: 'Photo de l\'ambassade',
+    addressTitle: 'Adresse',
+    address: 'Moscou, ul. Donskaya, dom 18/7, ofis 131-132',
+    city: 'Fédération de Russie',
   },
 };
 

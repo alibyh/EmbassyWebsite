@@ -39,6 +39,7 @@ export const Header: React.FC = () => {
     { label: t.header.emergency, href: '/EmbassyWebsite/emergency' },
     { label: t.header.about, href: '/EmbassyWebsite/about' },
     { label: t.header.crew, href: '/EmbassyWebsite/crew' },
+    { label: t.header.location, href: '/EmbassyWebsite/location' },
   ];
 
   useEffect(() => {
@@ -68,7 +69,21 @@ export const Header: React.FC = () => {
             <ul className={styles.navList}>
               {navItems.map((item) => (
                 <li key={item.label} className={styles.navItem}>
-                  <a href={item.href} className={styles.navLink}>
+                  <a
+                    href={item.href}
+                    className={styles.navLink}
+                    onClick={(e) => {
+                      // Handle anchor links on same page (for announcements)
+                      if (item.href.includes('#') && window.location.pathname === '/EmbassyWebsite/') {
+                        e.preventDefault();
+                        const hash = item.href.split('#')[1];
+                        const targetElement = document.getElementById(hash);
+                        if (targetElement) {
+                          targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }
+                    }}
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -106,7 +121,18 @@ export const Header: React.FC = () => {
               <a
                 href={item.href}
                 className={styles.mobileNavLink}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  // Handle anchor links on same page
+                  if (item.href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = item.href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 {item.label}
               </a>

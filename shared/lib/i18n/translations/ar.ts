@@ -15,6 +15,7 @@ export const ar: Translation = {
     emergency: 'الطوارئ',
     about: 'من نحن',
     crew: 'فريقنا',
+    location: 'الموقع',
   },
   hero: {
     badge: 'سفارة موريتانيا في موسكو',
@@ -252,6 +253,16 @@ export const ar: Translation = {
       },
       success: 'تم إنشاء المقال الإخباري بنجاح! جاري إعادة التوجيه...',
     },
+  },
+  location: {
+    badge: 'زرنا',
+    title: 'موقع السفارة',
+    description: 'ابحث عنا في موسكو. نرحب بالزوار خلال ساعات العمل.',
+    photosTitle: 'صور السفارة',
+    embassyPhoto: 'صورة السفارة',
+    addressTitle: 'العنوان',
+    address: 'موسكو، شارع دونسكايا، منزل 18/7، مكتب 131-132',
+    city: 'الاتحاد الروسي',
   },
 };
 

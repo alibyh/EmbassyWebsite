@@ -35,7 +35,7 @@
 
 .dropdown {
   position: absolute;
-  top: calc(-460% + 0.5rem);
+  top: calc(100% + 0.5rem);
   right: 0;
   background: var(--color-white);
   border: 1px solid rgba(232, 230, 225, 0.8);
@@ -47,6 +47,7 @@
   transform: translateY(-10px);
   transition: var(--transition);
   z-index: 1000;
+  margin-top: 0.25rem;
 }
 
 .dropdown[data-open="true"] {

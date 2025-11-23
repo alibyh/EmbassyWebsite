@@ -1,0 +1,384 @@
+.section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-white) 100%);
+  position: relative;
+  border-radius: 5%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionBadge {
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 98, 51, 0.1) 0%, rgba(255, 198, 30, 0.1) 100%);
+  border: 1px solid rgba(0, 98, 51, 0.15);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-green);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 98, 51, 0.08);
+}
+
+.title {
+  font-family: var(--font-secondary);
+  font-size: 2.75rem;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(42, 51, 66, 0.1);
+  background: var(--color-white);
+  border: 1px solid rgba(232, 230, 225, 0.8);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Handle Google Maps iframe loading */
+.mapContainer iframe {
+  pointer-events: auto;
+}
+
+.photosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.photosTitle {
+  font-family: var(--font-secondary);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.photosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px -2px rgba(42, 51, 66, 0.1);
+  transition: var(--transition);
+  background: var(--color-cream);
+  cursor: pointer;
+}
+
+.photoWrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px -4px rgba(42, 51, 66, 0.15);
+}
+
+.photoWrapper:focus {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: var(--transition);
+}
+
+.photoWrapper:hover .photo {
+  transform: scale(1.05);
+}
+
+.photoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.photoWrapper:hover .photoOverlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.photoOverlay svg {
+  color: var(--color-white);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: var(--transition);
+}
+
+.photoWrapper:hover .photoOverlay svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 2rem;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightboxClose {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: var(--transition);
+  z-index: 2001;
+}
+
+.lightboxClose:hover {
+  background: var(--color-white);
+  transform: scale(1.1);
+  color: var(--color-green);
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .lightbox {
+    padding: 1rem;
+  }
+
+  .lightboxClose {
+    top: -2.5rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightboxImage {
+    max-height: 85vh;
+  }
+}
+
+.addressInfo {
+  margin-top: 3rem;
+}
+
+.addressCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: var(--color-white);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px -2px rgba(42, 51, 66, 0.08);
+  border: 1px solid rgba(232, 230, 225, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.addressIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 98, 51, 0.1) 0%, rgba(0, 98, 51, 0.05) 100%);
+  border-radius: 1rem;
+  color: var(--color-green);
+  flex-shrink: 0;
+}
+
+.addressDetails {
+  flex: 1;
+}
+
+.addressTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.addressText {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .mapContainer {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .content {
+    gap: 2rem;
+  }
+
+  .mapContainer {
+    height: 350px;
+    border-radius: 1rem;
+  }
+
+  .photosTitle {
+    font-size: 1.5rem;
+  }
+
+  .photosGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .addressCard {
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addressIcon {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .mapContainer {
+    height: 300px;
+  }
+
+  .photosGrid {
+    gap: 0.75rem;
+  }
+
+  .addressCard {
+    padding: 1.5rem;
+  }
+}
+

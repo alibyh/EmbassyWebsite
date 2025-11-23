@@ -7,6 +7,7 @@ import { ConsularServices } from '@/widgets/ConsularServices';
 import { EmergencyContacts } from '@/widgets/EmergencyContacts';
 import { About } from '@/widgets/About';
 import { Crew } from '@/widgets/Crew';
+import { Location } from '@/widgets/Location';
 import { Footer } from '@/widgets/Footer';
 import { useEffect, useState } from 'react';
 
@@ -49,6 +50,7 @@ export default function Home() {
         <EmergencyContacts />
         <About />
         <Crew />
+        <Location />
       </main>
       <Footer />
     </>

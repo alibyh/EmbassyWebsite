@@ -13,6 +13,7 @@ export const en = {
     emergency: 'Emergency',
     about: 'About',
     crew: 'Our Team',
+    location: 'Location',
   },
   hero: {
     badge: 'Embassy of Mauritania in Moscow',
@@ -250,6 +251,16 @@ export const en = {
       },
       success: 'News article created successfully! Redirecting...',
     },
+  },
+  location: {
+    badge: 'Visit Us',
+    title: 'Embassy Location',
+    description: 'Find us in Moscow. We welcome visitors during our business hours.',
+    photosTitle: 'Embassy Photos',
+    embassyPhoto: 'Embassy photo',
+    addressTitle: 'Address',
+    address: 'ul. Donskaya, dom 18/7, ofis 131-132',
+    city: 'Moscow, Russian Federation',
   },
 };
 
