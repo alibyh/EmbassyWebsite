@@ -196,5 +196,62 @@ export const ar: Translation = {
       excerpt: 'تمديد الخدمات القنصلية حتى 6 مساءً في أيام الأسبوع طوال شهر ديسمبر لخدمتك بشكل أفضل.',
     },
   ],
+  admin: {
+    dashboard: {
+      title: 'لوحة تحكم المسؤول',
+      subtitle: 'إدارة محتوى موقع السفارة',
+      addNews: {
+        title: 'إضافة خبر',
+        description: 'إنشاء ونشر مقالات إخبارية مع الصور والعناوين والمحتوى',
+        button: 'إضافة مقال إخباري',
+      },
+    },
+    addNews: {
+      title: 'إضافة مقال إخباري',
+      subtitle: 'إنشاء مقال إخباري جديد مع دعم متعدد اللغات',
+      backButton: '← العودة إلى لوحة التحكم',
+      sourceLanguage: {
+        label: 'اللغة المصدر *',
+        hint: 'اختر اللغة التي ستستخدمها لكتابة المقال',
+      },
+      photo: {
+        label: 'الصورة',
+        uploadArea: 'انقر لتحميل الصورة',
+        uploadHint: 'PNG، JPG، WEBP حتى 10 ميجابايت',
+        remove: 'إزالة',
+      },
+      titleLabel: 'العنوان',
+      titlePlaceholder: 'أدخل عنوان المقال الإخباري بـ',
+      contentLabel: 'المحتوى',
+      contentPlaceholder: 'أدخل محتوى المقال الإخباري بـ',
+      translate: {
+        button: 'ترجمة إلى جميع اللغات',
+        translating: 'جاري الترجمة...',
+        hint: 'ترجمة المحتوى باستخدام Yandex Translate API...',
+      },
+      translations: {
+        title: 'مراجعة وتحرير الترجمات',
+        hint: 'راجع الترجمات التلقائية أدناه. يمكنك تحرير أي ترجمة قبل الإرسال.',
+        language: 'اللغة',
+        titleLabel: 'العنوان',
+        contentLabel: 'المحتوى',
+      },
+      actions: {
+        startOver: 'ابدأ من جديد',
+        cancel: 'إلغاء',
+        publish: 'نشر المقال',
+        publishing: 'جاري النشر...',
+        published: 'تم النشر!',
+      },
+      errors: {
+        translateFirst: 'يرجى ترجمة المحتوى أولاً بالنقر على زر "ترجمة".',
+        fillAll: 'يرجى التأكد من ملء جميع الترجمات.',
+        supabaseNotConfigured: 'Supabase غير مُكوّن. يرجى تعيين متغيرات البيئة NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY.',
+        supabaseUnavailable: 'عميل Supabase غير متاح.',
+        saveFailed: 'فشل حفظ المقال الإخباري',
+      },
+      success: 'تم إنشاء المقال الإخباري بنجاح! جاري إعادة التوجيه...',
+    },
+  },
 };
 

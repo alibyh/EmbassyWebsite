@@ -2,6 +2,7 @@
   padding: 6rem 0;
   background: var(--color-white);
   position: relative;
+  border-radius: 5%;
 }
 
 .header {
@@ -138,6 +139,8 @@
   color: var(--color-green);
   text-decoration: none;
   transition: var(--transition);
+  width: max-content;
+  align-items: center;
 }
 
 .ambassadorEmail:hover {
@@ -227,6 +230,8 @@
   color: var(--color-green);
   text-decoration: none;
   transition: var(--transition);
+  width: max-content;
+  align-items: center;
 }
 
 .memberEmail:hover {
@@ -280,6 +285,8 @@
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
+    width: 100%;
+    margin: 0;
   }
 
   .header {

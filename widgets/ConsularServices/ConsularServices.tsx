@@ -87,7 +87,7 @@ export const ConsularServices: React.FC = () => {
 
   return (
     <section className={styles.section} id="services">
-      <Container>
+      <Container size="content">
         <div className={styles.header}>
           <div className={styles.sectionBadge}>{t.services.badge}</div>
           <h2 className={styles.title}>{t.services.title}</h2>

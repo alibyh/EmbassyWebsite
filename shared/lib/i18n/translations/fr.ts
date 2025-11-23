@@ -1,0 +1,257 @@
+import { Translation } from './en';
+
+export const fr: Translation = {
+  common: {
+    contactUs: 'Contactez-nous',
+    learnMore: 'En savoir plus',
+    readMore: 'Lire la suite',
+    viewAll: 'Voir tout',
+    loading: 'Chargement...',
+  },
+  header: {
+    home: 'Accueil',
+    services: 'Services',
+    announcements: 'Annonces',
+    emergency: 'Urgence',
+    about: 'À propos',
+    crew: 'Notre équipe',
+  },
+  hero: {
+    badge: 'Ambassade de Mauritanie à Moscou',
+    title: 'République Islamique de Mauritanie',
+    subtitle: 'Portail officiel de l\'Ambassade de Mauritanie à Moscou. Nous fournissons des services consulaires complets aux citoyens mauritaniens en Russie et favorisons les relations diplomatiques entre la Mauritanie et la Fédération de Russie.',
+    consularServices: 'Services consulaires',
+    emergencyContact: 'Contact d\'urgence',
+  },
+  announcements: {
+    badge: 'Dernières mises à jour',
+    title: 'Annonces',
+    description: 'Restez informé des dernières nouvelles, mises à jour et avis importants de l\'ambassade.',
+    empty: 'Aucune annonce disponible pour le moment.',
+    date: 'Date',
+    announcement: 'Annonce',
+    category: 'Catégorie',
+    priority: 'Priorité',
+    high: 'Élevée',
+    medium: 'Moyenne',
+    low: 'Faible',
+    categories: {
+      general: 'Général',
+      alert: 'Alerte',
+      serviceUpdate: 'Mise à jour du service',
+      holiday: 'Jour férié',
+    },
+  },
+  services: {
+    badge: 'Nos services',
+    title: 'Services consulaires',
+    description: 'Un soutien complet pour tous vos besoins consulaires, fourni par notre équipe diplomatique expérimentée.',
+    passport: {
+      title: 'Services de passeport',
+      description: 'Services complets d\'émission et de renouvellement de passeport pour tous les citoyens.',
+      items: [
+        'Demandes de nouveau passeport',
+        'Renouvellements de passeport',
+        'Remplacement de passeport perdu/volé',
+        'Documents de voyage d\'urgence',
+      ],
+    },
+    visa: {
+      title: 'Visa et immigration',
+      description: 'Assistance experte pour les demandes de visa et les procédures d\'immigration.',
+      items: [
+        'Traitement des demandes de visa',
+        'Consultations en immigration',
+        'Émission de permis de voyage',
+        'Conseils sur les exigences d\'entrée',
+      ],
+    },
+    notary: {
+      title: 'Services notariaux',
+      description: 'Services d\'authentification et de notarisation de documents officiels.',
+      items: [
+        'Notarisation de documents',
+        'Certification d\'affidavit',
+        'Procuration',
+        'Attestation d\'acte de naissance',
+      ],
+    },
+    legal: {
+      title: 'Assistance juridique',
+      description: 'Soutien et conseils juridiques pour les citoyens ayant besoin d\'assistance.',
+      items: [
+        'Consultations juridiques',
+        'Services de liaison avec les tribunaux',
+        'Coordination des visites en prison',
+        'Références d\'avocats locaux',
+      ],
+    },
+    cta: {
+      title: 'Prêt à commencer?',
+      description: 'Prenez rendez-vous ou contactez-nous pour plus d\'informations sur nos services.',
+      bookAppointment: 'Prendre rendez-vous',
+      downloadForms: 'Télécharger les formulaires',
+    },
+  },
+  emergency: {
+    badge: 'Contact d\'urgence',
+    title: 'Support 24/7 pour les citoyens',
+    description: 'Pour les citoyens mauritaniens en Russie : En cas d\'urgence, notre équipe d\'ambassade est là pour vous aider 24h/24 et 7j/7.',
+    hotline: {
+      title: 'Ligne d\'urgence',
+      subtitle: 'Assistance d\'urgence 24/7',
+      availability: 'Disponible 24 heures sur 24, 7 jours sur 7',
+      availableNow: 'Disponible maintenant',
+    },
+    consular: {
+      title: 'Services consulaires',
+      subtitle: 'Renseignements généraux et soutien',
+      availability: 'Lundi - Vendredi : 9h00 - 17h00',
+    },
+    visa: {
+      title: 'Services de visa',
+      subtitle: 'Demandes de visa et informations',
+      availability: 'Lundi - Jeudi : 10h00 - 15h00',
+    },
+    labels: {
+      phone: 'Téléphone',
+      email: 'Email',
+      address: 'Adresse',
+      availability: 'Disponibilité',
+    },
+  },
+  about: {
+    badge: 'À propos de nous',
+    title: 'Relations diplomatiques Mauritanie-Russie',
+    description1: 'L\'Ambassade de la République Islamique de Mauritanie à Moscou représente les intérêts de notre nation dans la Fédération de Russie. Nous nous engageons à renforcer les relations bilatérales et à fournir des services consulaires exceptionnels aux citoyens mauritaniens.',
+    description2: 'Notre mission est de faciliter une coopération diplomatique fluide, de protéger les intérêts mauritaniens en Russie et de promouvoir les liens culturels et économiques entre nos nations. Nous servons la communauté mauritanienne avec dévouement.',
+    stats: {
+      independence: 'Depuis l\'indépendance',
+      emergency: 'Support d\'urgence',
+      citizens: 'Citoyens en Russie',
+      services: 'Services offerts',
+    },
+  },
+  crew: {
+    badge: 'Notre équipe',
+    title: 'Direction de l\'ambassade',
+    description: 'Rencontrez notre équipe diplomatique dévouée au service de la communauté mauritanienne en Russie.',
+    ambassador: {
+      badge: 'Ambassadeur',
+    },
+  },
+  footer: {
+    description: 'La représentation officielle de la République Islamique de Mauritanie dans la Fédération de Russie. Servir les citoyens mauritaniens à Moscou avec dévouement et excellence.',
+    services: {
+      title: 'Services',
+      passports: 'Passeports',
+      visas: 'Visas',
+      notary: 'Services notariaux',
+      legal: 'Soutien juridique',
+    },
+    information: {
+      title: 'Information',
+      about: 'À propos de nous',
+      news: 'Actualités',
+      events: 'Événements',
+      contact: 'Contact',
+    },
+    resources: {
+      title: 'Ressources',
+      travel: 'Conseils de voyage',
+      forms: 'Formulaires et documents',
+      faq: 'FAQ',
+      appointments: 'Rendez-vous',
+    },
+    legal: {
+      privacy: 'Politique de confidentialité',
+      terms: 'Conditions d\'utilisation',
+      accessibility: 'Accessibilité',
+    },
+    copyright: 'Ambassade de Mauritanie à Moscou. Tous droits réservés.',
+  },
+  announcementsList: [
+    {
+      title: 'Célébration du jour de l\'indépendance - 28 novembre',
+      excerpt: 'Rejoignez-nous pour célébrer le jour de l\'indépendance de la Mauritanie. Ambassade fermée le 28 novembre. Réception le 27 novembre.',
+    },
+    {
+      title: 'Lancement du nouveau système de visa électronique',
+      excerpt: 'La Mauritanie lance un système de visa électronique pour les citoyens russes. Postulez en ligne sur evisa.mr',
+    },
+    {
+      title: 'Avis de voyage hivernal',
+      excerpt: 'Informations de voyage mises à jour pour les citoyens mauritaniens planifiant un voyage hivernal entre Moscou et Nouakchott.',
+    },
+    {
+      title: 'Service consulaire mobile à Saint-Pétersbourg',
+      excerpt: 'L\'équipe de l\'ambassade fournira des services consulaires à Saint-Pétersbourg du 5 au 6 décembre. Inscription avant le 30 novembre.',
+    },
+    {
+      title: 'Événement culturel des étudiants mauritaniens',
+      excerpt: 'Rassemblement annuel des étudiants mauritaniens en Russie. 23 novembre à l\'ambassade. Inscription requise.',
+    },
+    {
+      title: 'Heures de service prolongées - Décembre',
+      excerpt: 'Services consulaires prolongés jusqu\'à 18h en semaine tout au long du mois de décembre pour mieux vous servir.',
+    },
+  ],
+  admin: {
+    dashboard: {
+      title: 'Tableau de bord administrateur',
+      subtitle: 'Gérez le contenu du site web de l\'ambassade',
+      addNews: {
+        title: 'Ajouter une actualité',
+        description: 'Créez et publiez des articles d\'actualité avec photos, titres et contenu',
+        button: 'Ajouter un article',
+      },
+    },
+    addNews: {
+      title: 'Ajouter un article',
+      subtitle: 'Créez un nouvel article d\'actualité avec support multilingue',
+      backButton: '← Retour au tableau de bord',
+      sourceLanguage: {
+        label: 'Langue source *',
+        hint: 'Sélectionnez la langue que vous utiliserez pour écrire l\'article',
+      },
+      photo: {
+        label: 'Photo',
+        uploadArea: 'Cliquez pour télécharger une photo',
+        uploadHint: 'PNG, JPG, WEBP jusqu\'à 10 Mo',
+        remove: 'Supprimer',
+      },
+      titleLabel: 'Titre',
+      titlePlaceholder: 'Entrez le titre de l\'article en',
+      contentLabel: 'Contenu',
+      contentPlaceholder: 'Entrez le contenu de l\'article en',
+      translate: {
+        button: 'Traduire dans toutes les langues',
+        translating: 'Traduction en cours...',
+        hint: 'Traduction du contenu à l\'aide de l\'API Yandex Translate...',
+      },
+      translations: {
+        title: 'Examiner et modifier les traductions',
+        hint: 'Examinez les traductions automatiques ci-dessous. Vous pouvez modifier toute traduction avant de soumettre.',
+        language: 'Langue',
+        titleLabel: 'Titre',
+        contentLabel: 'Contenu',
+      },
+      actions: {
+        startOver: 'Recommencer',
+        cancel: 'Annuler',
+        publish: 'Publier l\'article',
+        publishing: 'Publication...',
+        published: 'Publié!',
+      },
+      errors: {
+        translateFirst: 'Veuillez d\'abord traduire le contenu en cliquant sur le bouton "Traduire".',
+        fillAll: 'Veuillez vous assurer que toutes les traductions sont remplies.',
+        supabaseNotConfigured: 'Supabase n\'est pas configuré. Veuillez définir les variables d\'environnement NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_ANON_KEY.',
+        supabaseUnavailable: 'Le client Supabase n\'est pas disponible.',
+        saveFailed: 'Échec de l\'enregistrement de l\'article',
+      },
+      success: 'Article créé avec succès! Redirection...',
+    },
+  },
+};
+

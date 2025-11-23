@@ -17,6 +17,17 @@
   max-width: 1536px;
 }
 
+.content {
+  width: 90%;
+  max-width: none;
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 1rem;

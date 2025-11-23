@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  // Only use static export for production builds, not dev mode
+  // This allows API routes to work in dev mode
+  ...(process.env.NODE_ENV === 'production' && process.env.SKIP_STATIC_EXPORT !== 'true' 
+    ? { output: 'export' } 
+    : {}),
   images: {
     unoptimized: true,
   },

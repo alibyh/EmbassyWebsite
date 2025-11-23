@@ -3,7 +3,7 @@ import styles from './Container.module.css';
 
 export interface ContainerProps {
   children: React.ReactNode;
-  size?: 'narrow' | 'default' | 'wide' | 'fluid';
+  size?: 'narrow' | 'default' | 'wide' | 'fluid' | 'content';
   className?: string;
 }
 

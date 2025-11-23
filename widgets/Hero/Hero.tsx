@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
         <div className={styles.wave} />
       </div>
       
-      <Container className={styles.content}>
+      <Container size="content" className={styles.content}>
         <div className={styles.textContent}>
           <div className={styles.badge}>
             <span className={styles.badgeIcon} />

@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useAuth } from '@/shared/lib/auth';
+import { useI18n } from '@/shared/lib/i18n';
 import { Container } from '@/shared/ui/Container';
 import { Button } from '@/shared/ui/Button';
 import { Header } from '@/widgets/Header';
@@ -10,6 +11,7 @@ import styles from './Admin.module.css';
 
 export default function AdminDashboard() {
   const { user, loading } = useAuth();
+  const { t } = useI18n();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -20,7 +22,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className={styles.loading}>
-        <p>Loading...</p>
+        <p>{t.common.loading}</p>
       </div>
     );
   }
@@ -35,8 +37,8 @@ export default function AdminDashboard() {
       <main className={styles.main}>
         <Container>
           <div className={styles.dashboard}>
-            <h1 className={styles.title}>Admin Dashboard</h1>
-            <p className={styles.subtitle}>Manage your embassy website content</p>
+            <h1 className={styles.title}>{t.admin.dashboard.title}</h1>
+            <p className={styles.subtitle}>{t.admin.dashboard.subtitle}</p>
 
             <div className={styles.cards}>
               <div className={styles.card}>
@@ -46,14 +48,14 @@ export default function AdminDashboard() {
                     <path d="M9 13H15M9 9H15M9 17H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h2 className={styles.cardTitle}>Add News</h2>
-                <p className={styles.cardDescription}>Create and publish news articles with photos, titles, and content</p>
+                <h2 className={styles.cardTitle}>{t.admin.dashboard.addNews.title}</h2>
+                <p className={styles.cardDescription}>{t.admin.dashboard.addNews.description}</p>
                 <Button
                   variant="primary"
                   onClick={() => window.location.href = '/EmbassyWebsite/admin/news/add/'}
                   className={styles.cardButton}
                 >
-                  Add News Article
+                  {t.admin.dashboard.addNews.button}
                 </Button>
               </div>
             </div>

@@ -1,6 +1,7 @@
 .section {
   padding: 6rem 0;
   background: linear-gradient(180deg, var(--color-white) 0%, var(--color-cream) 100%);
+  border-radius: 5%;
 }
 
 .header {
@@ -177,6 +178,8 @@
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
+    width: 100%;
+    margin: 0;
   }
 
   .header {

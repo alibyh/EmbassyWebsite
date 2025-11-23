@@ -35,7 +35,7 @@
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(-460% + 0.5rem);
   right: 0;
   background: var(--color-white);
   border: 1px solid rgba(232, 230, 225, 0.8);
@@ -96,7 +96,7 @@
 
 @media (max-width: 768px) {
   .dropdown {
-    right: -1rem;
+    right: 3rem;
     min-width: 140px;
   }
 

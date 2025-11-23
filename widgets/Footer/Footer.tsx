@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
   return (
     <>
     <footer className={styles.footer}>
-      <Container>
+      <Container size="content">
         <div className={styles.content}>
           <div className={styles.about}>
             <div className={styles.logo}>

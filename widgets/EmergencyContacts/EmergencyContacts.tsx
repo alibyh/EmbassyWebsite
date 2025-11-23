@@ -82,7 +82,7 @@ export const EmergencyContacts: React.FC = () => {
   return (
     <section className={styles.section} id="emergency">
       <div className={styles.backgroundPattern} />
-      <Container className={styles.content}>
+      <Container size="content" className={styles.content}>
         <div className={styles.header}>
           <div className={styles.alertBadge}>
             <AlertIcon />

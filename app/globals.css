@@ -27,8 +27,17 @@ html {
   scroll-behavior: smooth;
   /* Optimize scrolling performance */
   -webkit-overflow-scrolling: touch;
-  /* Force GPU acceleration */
-  transform: translateZ(0);
+  /* Remove transform to allow fixed positioning to work */
+  /* transform: translateZ(0); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
@@ -44,6 +53,26 @@ body {
   text-rendering: optimizeLegibility;
   /* Prevent layout shifts */
   overflow-x: hidden;
+  width: 90%;
+  /* Ensure body doesn't interfere with fixed positioning */
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 100%;
+  }
+  
+  /* Add padding-top to account for fixed header on mobile */
+  main {
+    padding-top: 70px; /* Header height on mobile */
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding-top: 70px; /* Header height on small mobile */
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

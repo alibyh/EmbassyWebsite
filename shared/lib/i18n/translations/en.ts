@@ -194,6 +194,63 @@ export const en = {
       excerpt: 'Consular services extended until 6 PM on weekdays throughout December to serve you better.',
     },
   ],
+  admin: {
+    dashboard: {
+      title: 'Admin Dashboard',
+      subtitle: 'Manage your embassy website content',
+      addNews: {
+        title: 'Add News',
+        description: 'Create and publish news articles with photos, titles, and content',
+        button: 'Add News Article',
+      },
+    },
+    addNews: {
+      title: 'Add News Article',
+      subtitle: 'Create a new news article with multilingual support',
+      backButton: '← Back to Dashboard',
+      sourceLanguage: {
+        label: 'Source Language *',
+        hint: 'Select the language you will use to write the article',
+      },
+      photo: {
+        label: 'Photo',
+        uploadArea: 'Click to upload photo',
+        uploadHint: 'PNG, JPG, WEBP up to 10MB',
+        remove: 'Remove',
+      },
+      titleLabel: 'Title',
+      titlePlaceholder: 'Enter news article title in',
+      contentLabel: 'Content',
+      contentPlaceholder: 'Enter news article content in',
+      translate: {
+        button: 'Translate to All Languages',
+        translating: 'Translating...',
+        hint: 'Translating content using Yandex Translate API...',
+      },
+      translations: {
+        title: 'Review and Edit Translations',
+        hint: 'Review the automatic translations below. You can edit any translation before submitting.',
+        language: 'Language',
+        titleLabel: 'Title',
+        contentLabel: 'Content',
+      },
+      actions: {
+        startOver: 'Start Over',
+        cancel: 'Cancel',
+        publish: 'Publish Article',
+        publishing: 'Publishing...',
+        published: 'Published!',
+      },
+      errors: {
+        translateFirst: 'Please translate the content first by clicking "Translate" button.',
+        fillAll: 'Please ensure all translations are filled in.',
+        supabaseNotConfigured: 'Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.',
+        supabaseUnavailable: 'Supabase client is not available.',
+        saveFailed: 'Failed to save news article',
+      },
+      success: 'News article created successfully! Redirecting...',
+    },
+  },
 };
 
 export type Translation = typeof en;

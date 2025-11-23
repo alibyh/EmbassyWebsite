@@ -1,12 +1,18 @@
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  z-index: 1000 !important;
   background: var(--color-white);
   border-bottom: 1px solid rgba(232, 230, 225, 0.8);
   transition: var(--transition);
+  /* Ensure it stays on top */
+  will-change: transform;
+  transform: translateZ(0);
+  /* Ensure it's not affected by parent transforms */
+  isolation: isolate;
 }
 
 .header.scrolled {

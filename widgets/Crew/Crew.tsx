@@ -116,7 +116,7 @@ export const Crew: React.FC = () => {
 
   return (
     <section className={styles.section} id="crew">
-      <Container>
+      <Container size="content">
         <div className={styles.header}>
           <div className={styles.sectionBadge}>{t.crew.badge}</div>
           <h2 className={styles.title}>{t.crew.title}</h2>

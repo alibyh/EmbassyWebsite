@@ -254,6 +254,8 @@
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
+    width: 100%;
+    margin: 0;
   }
 
   .header {

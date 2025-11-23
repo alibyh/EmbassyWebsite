@@ -11,7 +11,7 @@ export const About: React.FC = () => {
   
   return (
     <section className={styles.section} id="about">
-      <Container>
+      <Container size="content">
         <div className={styles.content}>
           <div className={styles.textContent}>
             <div className={styles.sectionBadge}>{t.about.badge}</div>

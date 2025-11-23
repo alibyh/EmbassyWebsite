@@ -33,12 +33,12 @@ export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: t.header.home, href: '#' },
-    { label: t.header.services, href: '#services' },
-    { label: t.header.announcements, href: '#announcements' },
-    { label: t.header.emergency, href: '#emergency' },
-    { label: t.header.about, href: '#about' },
-    { label: t.header.crew, href: '#crew' },
+    { label: t.header.home, href: '/EmbassyWebsite/' },
+    { label: t.header.services, href: '/EmbassyWebsite/services' },
+    { label: t.header.announcements, href: '/EmbassyWebsite/#announcements' },
+    { label: t.header.emergency, href: '/EmbassyWebsite/emergency' },
+    { label: t.header.about, href: '/EmbassyWebsite/about' },
+    { label: t.header.crew, href: '/EmbassyWebsite/crew' },
   ];
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-        <Container className={styles.container}>
+        <Container size="content" className={styles.container}>
           <a href="#" className={styles.logo}>
             <div className={styles.logoIcon}>
               <LogoIcon />

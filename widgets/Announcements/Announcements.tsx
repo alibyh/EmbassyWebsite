@@ -8,14 +8,22 @@ import styles from './Announcements.module.css';
 
 interface NewsItem {
   id: string;
-  title: string;
-  text: string;
+  title?: string; // Legacy field
+  title_en?: string;
+  title_ru?: string;
+  title_ar?: string;
+  title_fr?: string;
+  text?: string; // Legacy field
+  text_en?: string;
+  text_ru?: string;
+  text_ar?: string;
+  text_fr?: string;
   photo_url: string | null;
   created_at: string;
 }
 
 export const Announcements: React.FC = () => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -46,14 +54,18 @@ export const Announcements: React.FC = () => {
       const supabaseClient = getSupabaseClient();
       
       if (!supabaseClient) {
-        // Fallback to mock data
-        const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
-          id: `news-${index}`,
-          title: item.title,
-          text: item.excerpt,
-          photo_url: null,
-          created_at: new Date().toISOString(),
-        }));
+          // Fallback to mock data
+          const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
+            id: `news-${index}`,
+            title_en: item.title,
+            title_ru: item.title,
+            title_ar: item.title,
+            text_en: item.excerpt,
+            text_ru: item.excerpt,
+            text_ar: item.excerpt,
+            photo_url: null,
+            created_at: new Date().toISOString(),
+          }));
         setNews(mockNews);
         setLoading(false);
         return;
@@ -69,8 +81,14 @@ export const Announcements: React.FC = () => {
         // Fallback to mock data if Supabase fails
         const mockNews: NewsItem[] = t.announcementsList.map((item, index) => ({
           id: `news-${index}`,
-          title: item.title,
-          text: item.excerpt,
+          title_en: item.title,
+          title_ru: item.title,
+          title_ar: item.title,
+          title_fr: item.title,
+          text_en: item.excerpt,
+          text_ru: item.excerpt,
+          text_ar: item.excerpt,
+          text_fr: item.excerpt,
           photo_url: null,
           created_at: new Date().toISOString(),
         }));
@@ -121,7 +139,7 @@ export const Announcements: React.FC = () => {
   if (loading) {
     return (
       <section className={styles.section} id="announcements">
-        <Container>
+        <Container size="content">
           <div className={styles.loading}>{t.common.loading || 'Loading...'}</div>
         </Container>
       </section>
@@ -131,7 +149,7 @@ export const Announcements: React.FC = () => {
   if (news.length === 0) {
     return (
       <section className={styles.section} id="announcements">
-        <Container>
+        <Container size="content">
           <div className={styles.header}>
             <div className={styles.sectionBadge}>{t.announcements.badge}</div>
             <h2 className={styles.title}>{t.announcements.title}</h2>
@@ -147,9 +165,38 @@ export const Announcements: React.FC = () => {
 
   const currentNews = news[currentIndex];
 
+  // Get localized title and text
+  const getLocalizedTitle = (item: NewsItem): string => {
+    // Check for new translation fields first
+    if (item.title_en || item.title_ru || item.title_ar || item.title_fr) {
+      return item[`title_${locale}` as keyof NewsItem] as string || 
+             item.title_en || 
+             item.title_ru || 
+             item.title_ar || 
+             item.title_fr || 
+             '';
+    }
+    // Fallback to legacy title field
+    return item.title || '';
+  };
+
+  const getLocalizedText = (item: NewsItem): string => {
+    // Check for new translation fields first
+    if (item.text_en || item.text_ru || item.text_ar || item.text_fr) {
+      return item[`text_${locale}` as keyof NewsItem] as string || 
+             item.text_en || 
+             item.text_ru || 
+             item.text_ar || 
+             item.text_fr || 
+             '';
+    }
+    // Fallback to legacy text field
+    return item.text || '';
+  };
+
   return (
     <section className={styles.section} id="announcements">
-      <Container>
+      <Container size="content">
         <div className={styles.header}>
           <div className={styles.sectionBadge}>{t.announcements.badge}</div>
           <h2 className={styles.title}>{t.announcements.title}</h2>
@@ -168,9 +215,9 @@ export const Announcements: React.FC = () => {
                 <div className={styles.slideContent}>
                   {item.photo_url && (
                     <div className={styles.slideImage}>
-                      <img src={item.photo_url} alt={item.title} />
-                    </div>
-                  )}
+                      <img src={item.photo_url} alt={getLocalizedTitle(item)} />
+                          </div>
+                        )}
                   <div className={styles.slideText}>
                     <div className={styles.slideDate}>
                       {new Date(item.created_at).toLocaleDateString('en-US', {
@@ -179,8 +226,8 @@ export const Announcements: React.FC = () => {
                         year: 'numeric',
                       })}
                     </div>
-                    <h3 className={styles.slideTitle}>{item.title}</h3>
-                    <p className={styles.slideDescription}>{item.text}</p>
+                    <h3 className={styles.slideTitle}>{getLocalizedTitle(item)}</h3>
+                    <p className={styles.slideDescription}>{getLocalizedText(item)}</p>
                   </div>
                 </div>
               </div>
@@ -217,7 +264,7 @@ export const Announcements: React.FC = () => {
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
-              </div>
+          </div>
             </>
           )}
         </div>
