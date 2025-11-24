@@ -16,12 +16,13 @@ export const fr: Translation = {
     about: 'À propos',
     crew: 'Notre équipe',
     location: 'Emplacement',
+    embassyInMoscow: 'Ambassade à Moscou',
   },
   hero: {
     badge: 'Ambassade de Mauritanie à Moscou',
     title: 'République Islamique de Mauritanie',
     subtitle: 'Portail officiel de l\'Ambassade de Mauritanie à Moscou. Nous fournissons des services consulaires complets aux citoyens mauritaniens en Russie et favorisons les relations diplomatiques entre la Mauritanie et la Fédération de Russie.',
-    consularServices: 'Services consulaires',
+    consularServices: 'Services offerts',
     emergencyContact: 'Contact d\'urgence',
   },
   announcements: {
@@ -140,8 +141,30 @@ export const fr: Translation = {
     ambassador: {
       badge: 'Ambassadeur',
     },
+    positions: {
+      ambassador: 'Ambassadeur',
+      deputyHead: 'Chef adjoint de mission',
+      consulGeneral: 'Consul général',
+      culturalAttache: 'Attaché culturel',
+      economicCounselor: 'Conseiller économique',
+    },
+    bios: {
+      ambassador: 'Son Excellence Sidati Cheikh Ould Ahmed Aicha occupe le poste d\'Ambassadeur de la République Islamique de Mauritanie auprès de la Fédération de Russie depuis 2024.',
+      deputyHead: 'Supervise les opérations quotidiennes et la coordination des services consulaires.',
+      consulGeneral: 'Gère toutes les affaires consulaires et les services aux citoyens.',
+      culturalAttache: 'Favorise les échanges culturels et les programmes éducatifs.',
+      economicCounselor: 'Facilite le commerce et la coopération économique.',
+    },
+    names: {
+      ambassador: 'Sidati Cheikh Ould Ahmed Aicha',
+      deputyHead: 'Fatima Bint Sidi',
+      consulGeneral: 'Mohamed Ould Cheikh',
+      culturalAttache: 'Aicha Mint Salem',
+      economicCounselor: 'Sidi Ould Ahmed',
+    },
   },
   footer: {
+    embassyInMoscow: 'Ambassade à Moscou',
     description: 'La représentation officielle de la République Islamique de Mauritanie dans la Fédération de Russie. Servir les citoyens mauritaniens à Moscou avec dévouement et excellence.',
     services: {
       title: 'Services',

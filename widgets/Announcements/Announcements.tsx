@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Container } from '@/shared/ui/Container';
 import { useI18n } from '@/shared/lib/i18n';
 import { getSupabaseClient, isSupabaseConfigured } from '@/shared/lib/supabase';
+import { getAssetPath } from '@/shared/lib/utils/paths';
 import styles from './Announcements.module.css';
 
 interface NewsItem {
@@ -28,6 +29,7 @@ export const Announcements: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchNews();
@@ -194,6 +196,10 @@ export const Announcements: React.FC = () => {
     return item.text || '';
   };
 
+  const handleImageLoad = (imageUrl: string) => {
+    setLoadedImages((prev) => new Set(prev).add(imageUrl));
+  };
+
   return (
     <section className={styles.section} id="announcements">
       <Container size="content">
@@ -215,9 +221,27 @@ export const Announcements: React.FC = () => {
                 <div className={styles.slideContent}>
                   {item.photo_url && (
                     <div className={styles.slideImage}>
-                      <img src={item.photo_url} alt={getLocalizedTitle(item)} />
-                          </div>
-                        )}
+                      {!loadedImages.has(item.photo_url) && (
+                        <img 
+                          src={typeof window !== 'undefined' && window.location.hostname === 'localhost' 
+                            ? '/assets/loading-green-loading.gif'
+                            : getAssetPath('/assets/loading-green-loading.gif')
+                          } 
+                          alt="Loading..." 
+                          className={styles.loadingImage}
+                        />
+                      )}
+                      <img 
+                        src={item.photo_url} 
+                        alt={getLocalizedTitle(item)}
+                        onLoad={() => handleImageLoad(item.photo_url!)}
+                        className={styles.slideImageContent}
+                        style={{ 
+                          opacity: loadedImages.has(item.photo_url) ? 1 : 0 
+                        }}
+                      />
+                    </div>
+                  )}
                   <div className={styles.slideText}>
                     <div className={styles.slideDate}>
                       {new Date(item.created_at).toLocaleDateString('en-US', {

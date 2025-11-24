@@ -14,12 +14,6 @@ const EmailIcon = () => (
   </svg>
 );
 
-const PersonIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
 
 const PlaceholderPhoto: React.FC<{ name: string; isAmbassador?: boolean }> = ({ name, isAmbassador }) => {
   const initials = name
@@ -40,6 +34,43 @@ const AmbassadorCard: React.FC<{ ambassador: CrewMember }> = ({ ambassador }) =>
   const { t } = useI18n();
   const [imageError, setImageError] = React.useState(false);
   
+  // Get translated position, bio, and name
+  const getTranslatedPosition = (position: string): string => {
+    const positionMap: Record<string, keyof typeof t.crew.positions> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = positionMap[position];
+    return key ? t.crew.positions[key] : position;
+  };
+
+  const getTranslatedBio = (position: string): string => {
+    const bioMap: Record<string, keyof typeof t.crew.bios> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = bioMap[position];
+    return key ? t.crew.bios[key] : '';
+  };
+
+  const getTranslatedName = (position: string): string => {
+    const nameMap: Record<string, keyof typeof t.crew.names> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = nameMap[position];
+    return key ? t.crew.names[key] : ambassador.name;
+  };
+  
   return (
     <div className={styles.ambassadorCard}>
       <div className={styles.ambassadorBadge}>
@@ -49,20 +80,20 @@ const AmbassadorCard: React.FC<{ ambassador: CrewMember }> = ({ ambassador }) =>
         {ambassador.photo && !imageError ? (
           <img 
             src={getAssetPath(ambassador.photo)} 
-            alt={ambassador.name}
+            alt={getTranslatedName(ambassador.position)}
             className={styles.ambassadorPhoto}
             onError={() => setImageError(true)}
           />
         ) : (
           <div className={styles.ambassadorPhoto}>
-            <PlaceholderPhoto name={ambassador.name} isAmbassador />
+            <PlaceholderPhoto name={getTranslatedName(ambassador.position)} isAmbassador />
           </div>
         )}
         <div className={styles.ambassadorInfo}>
-          <h3 className={styles.ambassadorName}>{ambassador.name}</h3>
-          <p className={styles.ambassadorPosition}>{ambassador.position}</p>
+          <h3 className={styles.ambassadorName}>{getTranslatedName(ambassador.position)}</h3>
+          <p className={styles.ambassadorPosition}>{getTranslatedPosition(ambassador.position)}</p>
           {ambassador.bio && (
-            <p className={styles.ambassadorBio}>{ambassador.bio}</p>
+            <p className={styles.ambassadorBio}>{getTranslatedBio(ambassador.position) || ambassador.bio}</p>
           )}
           {ambassador.email && (
             <a href={`mailto:${ambassador.email}`} className={styles.ambassadorEmail}>
@@ -77,26 +108,64 @@ const AmbassadorCard: React.FC<{ ambassador: CrewMember }> = ({ ambassador }) =>
 };
 
 const MemberCard: React.FC<{ member: CrewMember }> = ({ member }) => {
+  const { t } = useI18n();
   const [imageError, setImageError] = React.useState(false);
+  
+  // Get translated position, bio, and name
+  const getTranslatedPosition = (position: string): string => {
+    const positionMap: Record<string, keyof typeof t.crew.positions> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = positionMap[position];
+    return key ? t.crew.positions[key] : position;
+  };
+
+  const getTranslatedBio = (position: string): string => {
+    const bioMap: Record<string, keyof typeof t.crew.bios> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = bioMap[position];
+    return key ? t.crew.bios[key] : '';
+  };
+
+  const getTranslatedName = (position: string): string => {
+    const nameMap: Record<string, keyof typeof t.crew.names> = {
+      'Ambassador': 'ambassador',
+      'Deputy Head of Mission': 'deputyHead',
+      'Consul General': 'consulGeneral',
+      'Cultural Attaché': 'culturalAttache',
+      'Economic Counselor': 'economicCounselor',
+    };
+    const key = nameMap[position];
+    return key ? t.crew.names[key] : member.name;
+  };
   
   return (
     <div className={styles.memberCard}>
       {member.photo && !imageError ? (
         <img 
           src={getAssetPath(member.photo)} 
-          alt={member.name}
+          alt={getTranslatedName(member.position)}
           className={styles.memberPhoto}
           onError={() => setImageError(true)}
         />
       ) : (
         <div className={styles.memberPhoto}>
-          <PlaceholderPhoto name={member.name} />
+          <PlaceholderPhoto name={getTranslatedName(member.position)} />
         </div>
       )}
-      <h4 className={styles.memberName}>{member.name}</h4>
-      <p className={styles.memberPosition}>{member.position}</p>
+      <h4 className={styles.memberName}>{getTranslatedName(member.position)}</h4>
+      <p className={styles.memberPosition}>{getTranslatedPosition(member.position)}</p>
       {member.bio && (
-        <p className={styles.memberBio}>{member.bio}</p>
+        <p className={styles.memberBio}>{getTranslatedBio(member.position) || member.bio}</p>
       )}
       {member.email && (
         <a href={`mailto:${member.email}`} className={styles.memberEmail}>

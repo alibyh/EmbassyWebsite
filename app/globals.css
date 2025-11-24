@@ -56,6 +56,18 @@ body {
   width: 90%;
   /* Ensure body doesn't interfere with fixed positioning */
   position: relative;
+  /* Prevent flash of unstyled content until locale is ready */
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+}
+
+html.locale-ready body {
+  opacity: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {

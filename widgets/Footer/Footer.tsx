@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
               <div className={styles.logoIcon}>
                 <LogoIcon />
               </div>
-              Mauritania Embassy
+              <span suppressHydrationWarning>{t.footer.embassyInMoscow}</span>
             </div>
             <p className={styles.description}>
               {t.footer.description}

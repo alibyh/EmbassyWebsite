@@ -55,13 +55,13 @@ export const Header: React.FC = () => {
     <>
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
         <Container size="content" className={styles.container}>
-          <a href="#" className={styles.logo}>
+          <a href="/EmbassyWebsite/" className={styles.logo}>
             <div className={styles.logoIcon}>
               <LogoIcon />
             </div>
             <span className={styles.logoText}>
               <span className={styles.logoMain}>Mauritania</span>
-              <span className={styles.logoSub}>Embassy in Moscow</span>
+              <span className={styles.logoSub} suppressHydrationWarning>{t.header.embassyInMoscow}</span>
             </span>
           </a>
 
@@ -92,7 +92,20 @@ export const Header: React.FC = () => {
 
             <div className={styles.actions}>
               <LanguageSwitcher />
-              <Button variant="primary" size="small">
+              <Button 
+                variant="primary" 
+                size="small"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const emergencySection = document.getElementById('emergency');
+                  if (emergencySection) {
+                    emergencySection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.href = '/EmbassyWebsite/emergency';
+                  }
+                }}
+                suppressHydrationWarning
+              >
                 {t.common.contactUs}
               </Button>
             </div>
@@ -110,42 +123,114 @@ export const Header: React.FC = () => {
 
       <div 
         className={`${styles.mobileNavOverlay} ${isMobileMenuOpen ? styles.open : ''}`}
-        onClick={() => setIsMobileMenuOpen(false)}
+        onClick={(e) => {
+          // Only close if clicking directly on overlay, not on child elements
+          if (e.target === e.currentTarget) {
+            e.stopPropagation();
+            setIsMobileMenuOpen(false);
+          }
+        }}
+        onTouchStart={(e) => {
+          // Prevent touch events from propagating to nav items
+          if (e.target === e.currentTarget) {
+            e.stopPropagation();
+          }
+        }}
         aria-hidden="true"
       />
 
       <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.open : ''}`}>
         <ul className={styles.mobileNavList}>
-          {navItems.map((item) => (
-            <li key={item.label} className={styles.mobileNavItem}>
-              <a
-                href={item.href}
-                className={styles.mobileNavLink}
-                onClick={(e) => {
-                  // Handle anchor links on same page
-                  if (item.href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = item.href.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                      targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
+          {navItems.map((item) => {
+            // Capture href in closure to prevent it from changing
+            const itemHref = item.href;
+            
+            const handleNavClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              // Close menu immediately
+              setIsMobileMenuOpen(false);
+              
+              // Handle anchor links on same page (for announcements)
+              if (itemHref.includes('#') && window.location.pathname === '/EmbassyWebsite/') {
+                // Use setTimeout to ensure menu closes before scrolling
+                setTimeout(() => {
+                  const hash = itemHref.split('#')[1];
+                  const targetElement = document.getElementById(hash);
+                  if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                   }
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+                }, 200);
+              } else {
+                // For regular navigation links, navigate immediately
+                // Use a small delay to ensure menu state update doesn't interfere
+                setTimeout(() => {
+                  // Use the captured href value
+                  if (itemHref && itemHref !== '#') {
+                    window.location.href = itemHref;
+                  }
+                }, 50);
+              }
+            };
+
+            return (
+              <li key={item.label} className={styles.mobileNavItem}>
+                <button
+                  type="button"
+                  className={styles.mobileNavLink}
+                  onClick={handleNavClick}
+                  onTouchStart={(e) => {
+                    // Stop touch event propagation on mobile
+                    e.stopPropagation();
+                  }}
+                  suppressHydrationWarning
+                >
+                  {item.label}
+                </button>
+              </li>
+            );
+          })}
         </ul>
         <div className={styles.mobileActions}>
           <LanguageSwitcher />
-          <Button variant="primary" size="medium">
+          <Button 
+            variant="primary" 
+            size="medium"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMobileMenuOpen(false);
+              const emergencySection = document.getElementById('emergency');
+              if (emergencySection) {
+                emergencySection.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = '/EmbassyWebsite/emergency';
+              }
+            }}
+            suppressHydrationWarning
+          >
             {t.common.contactUs}
           </Button>
         </div>
       </div>
+
+      <div 
+        className={`${styles.mobileNavOverlay} ${isMobileMenuOpen ? styles.open : ''}`}
+        onClick={(e) => {
+          // Only close if clicking directly on overlay, not on child elements
+          if (e.target === e.currentTarget) {
+            e.stopPropagation();
+            setIsMobileMenuOpen(false);
+          }
+        }}
+        onTouchStart={(e) => {
+          // Prevent touch events from propagating to nav items
+          if (e.target === e.currentTarget) {
+            e.stopPropagation();
+          }
+        }}
+        aria-hidden="true"
+      />
     </>
   );
 };

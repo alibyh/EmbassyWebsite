@@ -57,6 +57,10 @@ export const Hero: React.FC = () => {
               size="large"
               icon={<ArrowRightIcon />}
               iconPosition="right"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = '/EmbassyWebsite/services';
+              }}
             >
               {t.hero.consularServices}
             </Button>
@@ -65,6 +69,15 @@ export const Hero: React.FC = () => {
               size="large"
               icon={<PhoneIcon />}
               iconPosition="left"
+              onClick={(e) => {
+                e.preventDefault();
+                const emergencySection = document.getElementById('emergency');
+                if (emergencySection) {
+                  emergencySection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/EmbassyWebsite/emergency';
+                }
+              }}
             >
               {t.hero.emergencyContact}
             </Button>

@@ -14,12 +14,13 @@ export const en = {
     about: 'About',
     crew: 'Our Team',
     location: 'Location',
+    embassyInMoscow: 'Embassy in Moscow',
   },
   hero: {
     badge: 'Embassy of Mauritania in Moscow',
     title: 'Islamic Republic of Mauritania',
     subtitle: 'Official portal of the Mauritanian Embassy in Moscow. We provide comprehensive consular services to Mauritanian citizens in Russia and foster diplomatic relations between Mauritania and the Russian Federation.',
-    consularServices: 'Consular Services',
+    consularServices: 'Offered Services',
     emergencyContact: 'Emergency Contact',
   },
   announcements: {
@@ -138,8 +139,30 @@ export const en = {
     ambassador: {
       badge: 'Ambassador',
     },
+    positions: {
+      ambassador: 'Ambassador',
+      deputyHead: 'Deputy Head of Mission',
+      consulGeneral: 'Consul General',
+      culturalAttache: 'Cultural Attaché',
+      economicCounselor: 'Economic Counselor',
+    },
+    bios: {
+      ambassador: 'His Excellency Sidati Cheikh Ould Ahmed Aicha has served as the Ambassador of the Islamic Republic of Mauritania to the Russian Federation since 2024.',
+      deputyHead: 'Oversees daily operations and consular services coordination.',
+      consulGeneral: 'Manages all consular affairs and citizen services.',
+      culturalAttache: 'Promotes cultural exchange and educational programs.',
+      economicCounselor: 'Facilitates trade and economic cooperation.',
+    },
+    names: {
+      ambassador: 'Sidati Cheikh Ould Ahmed Aicha',
+      deputyHead: 'Fatima Bint Sidi',
+      consulGeneral: 'Mohamed Ould Cheikh',
+      culturalAttache: 'Aicha Mint Salem',
+      economicCounselor: 'Sidi Ould Ahmed',
+    },
   },
   footer: {
+    embassyInMoscow: 'Embassy in Moscow',
     description: 'The official representation of the Islamic Republic of Mauritania in the Russian Federation. Serving Mauritanian citizens in Moscow with dedication and excellence.',
     services: {
       title: 'Services',

@@ -205,6 +205,15 @@
     pointer-events: all;
   }
 
+  /* When nav is open, overlay should not block nav items */
+  .mobileNav.open {
+    z-index: 201;
+  }
+
+  .mobileNav.open ~ .mobileNavOverlay.open {
+    pointer-events: none;
+  }
+
   .mobileNav {
     display: block;
     position: fixed;
@@ -223,6 +232,8 @@
     max-height: calc(100vh - 73px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /* Ensure touch events work properly on mobile */
+    touch-action: pan-y;
   }
 
   .mobileNav.open {
@@ -255,6 +266,10 @@
     min-height: 44px;
     display: flex;
     align-items: center;
+    /* Ensure links are clickable on mobile */
+    -webkit-tap-highlight-color: rgba(0, 98, 51, 0.1);
+    touch-action: manipulation;
+    cursor: pointer;
   }
 
   .mobileNavLink:hover,
